@@ -6,6 +6,7 @@
 </head>
 <body>
 <h2>Добавить задачу для пользователя {{ user.get_username }}</h2>
+<p style="color: chartreuse">{{ text_ok }}</p>
 <form method="post">
     {% csrf_token %}
     {{ form_task.as_p }}
