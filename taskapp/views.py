@@ -3,6 +3,8 @@ from .forms import FormTask, FormUser, UserLoginForm
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
+from .models import Task
+from django.shortcuts import render, get_object_or_404
 
 
 # Create your views here.
@@ -25,7 +27,8 @@ def add(request):
 
 # Домашняя страница
 def home(request):
-    return render(request, 'taskapp/home.html', {})
+    tasks = Task.objects.filter(owner=request.user)
+    return render(request, 'taskapp/home.html', {'tasks': tasks})
 
 
 # Страница успешной регистрации
@@ -72,3 +75,8 @@ def sign_in(request):
 def sign_out(request):
     logout(request)
     return redirect('home')
+
+
+def task_detail(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    return render(request, 'taskapp/task_detail.html', {'task': task})

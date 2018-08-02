@@ -6,5 +6,10 @@
 </head>
 <body>
 <h2>Приветствую тебя на главной странице {{ user.get_username }}</h2>
+{% for task in tasks %}
+    <a href="{% url 'task_detale' pk=task.pk %}">{{ task.title }}</a>
+    <p>Дата создания: {{ task.date_start }}</p>
+    <p>Дидлайн: {{ task.date_finish }}</p><br>
+{% endfor %}
 </body>
 </html>
