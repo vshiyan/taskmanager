@@ -1,7 +1,7 @@
 {% extends 'taskapp/base_sign_in.html' %}
 {% block sign %}
-<h2>Введите ваши данные для входа.</h2>
-<p style="color: crimson">{{ text_err }}</p>
+    <h2>Введите ваши данные для входа.</h2>
+    <p style="color: crimson">{{ text_err }}</p>
     {% csrf_token %}
     {{ form.as_p }}
 {% endblock %}

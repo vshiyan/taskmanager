@@ -15,12 +15,15 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" method="post">
-    {% block sign %}
-    {% endblock %}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную"
-           onClick='location.href="{% url 'home' %}"'>
-</form>
+
+<div class="container">
+    <form class="form-signin" method="post">
+        {% block sign %}
+        {% endblock %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную"
+               onClick='location.href="{% url 'home' %}"'>
+    </form>
+</div>
 </body>
 </html>

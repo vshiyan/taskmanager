@@ -61,8 +61,6 @@ def sign_in(request):
     if request.method == "POST":
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            print(form.data['username'])
-            print(form.data['password'])
             user = authenticate(username=form.data['username'], password=form.data['password'])
             if user is not None:
                 login(request, user)

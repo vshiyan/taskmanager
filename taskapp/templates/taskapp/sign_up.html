@@ -17,12 +17,17 @@
 </head>
 
 <body class="text-left">
-<form class="form-signin" method="post">
-    {% csrf_token %}
-    {{ form_sign_up.as_p }}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегестрировать пользователя</button>
+<div class="container">
+    <br>
+    <h2>Регистрация пользователя</h2>
+    <form class="form-signin" method="post">
+        {% csrf_token %}
+        {{ form_sign_up.as_p }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегестрировать пользователя</button>
 
-    <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную" onClick='location.href="{% url 'home' %}"'>
-</form>
+        <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную"
+               onClick='location.href="{% url 'home' %}"'>
+    </form>
+</div>
 </body>
 </html>
