@@ -11,6 +11,7 @@
     {% csrf_token %}
     {{ form_task.as_p }}
     <button type="submit">Сохранить</button>
+     <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную" onClick='location.href="{% url 'home' %}"'>
 </form>
 </body>
 </html>

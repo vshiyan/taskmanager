@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from .forms import FormTask, FormUser, UserLoginForm
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from .models import Task
 from django.shortcuts import render, get_object_or_404
+import datetime
 
 
 # Create your views here.
@@ -27,7 +27,10 @@ def add(request):
 
 # Домашняя страница
 def home(request):
-    tasks = Task.objects.filter(owner=request.user)
+    tasks = ''
+    if request.user.is_authenticated:
+        date = datetime.datetime
+        tasks = Task.objects.filter(owner=request.user).filter(date_finish__gt=date.today()).order_by('date_finish')
     return render(request, 'taskapp/home.html', {'tasks': tasks})
 
 
@@ -77,6 +80,9 @@ def sign_out(request):
     return redirect('home')
 
 
+# Вывод отдельной задачи
 def task_detail(request, pk):
     task = get_object_or_404(Task, pk=pk)
+    if task.owner != request.user:
+        return redirect('home')
     return render(request, 'taskapp/task_detail.html', {'task': task})

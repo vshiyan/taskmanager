@@ -1,15 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TASK MANAGER</title>
-</head>
-<body>
-<h2>Приветствую тебя на главной странице {{ user.get_username }}</h2>
-{% for task in tasks %}
-    <a href="{% url 'task_detale' pk=task.pk %}">{{ task.title }}</a>
-    <p>Дата создания: {{ task.date_start }}</p>
-    <p>Дидлайн: {{ task.date_finish }}</p><br>
-{% endfor %}
-</body>
-</html>
+{% extends 'taskapp/base.html' %}
+{% block content %}
+    <div class="container mt-5 text-center" >
+        {% if  user.is_authenticated %}
+            <br>
+            <h2 class="mt-2">Поставленные задачи для {{ user.get_username }}</h2>
+             <input type="button" class="btn btn-lg btn-success btn-block" value="Добавить задание" onClick='location.href="{% url 'add' %}"'>
+            {% if  not tasks.count %}
+                <H2>У вас нет задач на будущее.</H2>
+                <H2>Поставте себе цель!</H2>
+            {% else %}
+                <div class="list-group">
+                {% for task in tasks %}
+
+
+                    <a class="list-group-item list-group-item-action list-group-item-info"
+                       href="{% url 'task_detale' pk=task.pk %}"><h4 class="text-left m-0">{{ task.title }}</h4>
+                        <p class="font-weight-light m-0 text-left">Выполнить до: {{ task.date_finish }}</p>
+                    </a>
+
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        {% endif %}
+    </div>
+{% endblock content %}
