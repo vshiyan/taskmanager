@@ -10,8 +10,7 @@ class Checker:
         date = datetime.date.today()
         all = Task.objects.filter(owner=self.user)
         for u in all:
-            if date < u.date_finish:
-                Task.objects.filter(pk=u.pk).update(type_task=self.cmpare(u.date_finish, date))
+            Task.objects.filter(pk=u.pk).update(type_task=self.cmpare(u.date_finish, date))
 
     def cmpare(self, date1, date2):
         a = date1 - date2

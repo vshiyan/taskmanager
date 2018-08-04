@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from taskapp.views import add as view_add
 from taskapp.views import home as view_home
-from taskapp.views import sign_up, cong, sign_in, sign_out,task_detail
+from taskapp.views import sign_up, cong, sign_in, sign_out, task_detail, before
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('sign_in/', sign_in, name='sign_in'),
     path('sign_out/', sign_out, name='sign_out'),
     path('task/<int:pk>/', task_detail, name='task_detale'),
+    path('old', before, name='before'),
 ]

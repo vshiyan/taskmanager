@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404
 import datetime
 from .checkdate import Checker
 
+
 # Create your views here.
 # Отображает форму добавления задания
 # После успешного добавления форма очищается,выводится сообщение об успехе
@@ -34,6 +35,17 @@ def home(request):
         cheker.checking()
         tasks = Task.objects.filter(owner=request.user).filter(date_finish__gt=date.today()).order_by('date_finish')
     return render(request, 'taskapp/home.html', {'tasks': tasks})
+
+
+# Домашняя страница
+def before(request):
+    tasks = ''
+    if request.user.is_authenticated:
+        date = datetime.datetime
+        cheker = Checker(request.user)
+        cheker.checking()
+        tasks = Task.objects.filter(owner=request.user).filter(date_finish__lt=date.today()).order_by('date_finish')
+    return render(request, 'taskapp/before.html', {'tasks': tasks})
 
 
 # Страница успешной регистрации

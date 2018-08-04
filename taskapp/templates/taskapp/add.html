@@ -1,4 +1,5 @@
 {% extends 'taskapp/base.html' %}
+{% load static %}
 {% block content %}
     <br>
 <h2>Добавить задачу для пользователя {{ user.get_username }}</h2>
@@ -6,7 +7,7 @@
 <form method="post" class="form-control-sm">
     {% csrf_token %}
     {{ form_task.as_p }}
-    <button type="submit" class="btn btn-lg btn-success btn-block">Сохранить</button>
+    <button type="submit" class="btn btn-lg btn-success btn-block ">Сохранить</button>
      <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную" onClick='location.href="{% url 'home' %}"'>
 </form>
 {% endblock %}
