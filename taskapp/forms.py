@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 
 class FormTask(forms.ModelForm):
-    title = forms.CharField(label=(u'Название задачи'), max_length=30,
+    title = forms.CharField(label=(u'Название задачи'), max_length=40,
                             widget=forms.TextInput(attrs={'class': 'form-control form-control-sm'}))
     date_finish = forms.DateTimeField(label=(u'Крайний срок исполнения задачи'),
                                       widget=forms.SelectDateWidget(attrs={'class': 'form-control form-control-sm'}))
-    descrition = forms.CharField(label=(u'Описание задачи'), max_length=30,
+    descrition = forms.CharField(label=(u'Описание задачи'), max_length=1000,
                                   widget=forms.Textarea(attrs={'class': 'form-control form-control-sm'}))
 
     class Meta:

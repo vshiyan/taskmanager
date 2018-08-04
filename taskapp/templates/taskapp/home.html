@@ -1,38 +1,51 @@
 {% extends 'taskapp/base.html' %}
 {% block content %}
-    <div class="container mt-5 text-center" >
+    <div class="container mt-5 text-center">
         {% if  user.is_authenticated %}
             <br>
             <h2 class="mt-2">Поставленные задачи для пользователя {{ user.get_username }}</h2>
-             <input type="button" class="btn btn-lg btn-success btn-block" value="Добавить задание" onClick='location.href="{% url 'add' %}"'>
+            <input type="button" class="btn btn-lg btn-success btn-block" value="Добавить задание"
+                   onClick='location.href="{% url 'add' %}"'>
             {% if  not tasks.count %}
                 <H2>У вас нет задач на будущее.</H2>
                 <H2>Поставте себе цель!</H2>
             {% else %}
                 <div class="list-group">
-                {% for task in tasks %}
+                    {% for task in tasks %}
+                        {% if task.type_task < 5 %}
+                            <a class="list-group-item list-group-item-action list-group-item list-group-item-danger"
+                           href="{% url 'task_detale' pk=task.pk %}"><h4 class="text-left m-0">{{ task.title }}</h4>
+                            <p class="font-weight-light m-0 text-left">Выполнить до: {{ task.date_finish }}</p>
+                        </a>
+                        {% elif task.type_task < 10 %}
+                            <a class="list-group-item list-group-item-action list-group-item list-group-item-warning"
+                           href="{% url 'task_detale' pk=task.pk %}"><h4 class="text-left m-0">{{ task.title }}</h4>
+                            <p class="font-weight-light m-0 text-left">Выполнить до: {{ task.date_finish }}</p>
+                        </a>
+                        {% else %}
+                            <a class="list-group-item list-group-item-action list-group-item"
+                           href="{% url 'task_detale' pk=task.pk %}"><h4 class="text-left m-0">{{ task.title }}</h4>
+                            <p class="font-weight-light m-0 text-left">Выполнить до: {{ task.date_finish }}</p>
+                        </a>
+                        {% endif %}
 
 
-                    <a class="list-group-item list-group-item-action list-group-item"
-                       href="{% url 'task_detale' pk=task.pk %}"><h4 class="text-left m-0">{{ task.title }}</h4>
-                        <p class="font-weight-light m-0 text-left">Выполнить до: {{ task.date_finish }}</p>
-                    </a>
-
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
             {% endif %}
         {% else %}
             <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <main role="main" class="inner cover">
-        <h1 class="cover-heading">Рад видеть вас на моем сайте!</h1>
-        <p class="lead">Этот сайт создан для хранения задач, решение которых вы ставите своей целью.
-            Вы можете создавать новые задачи, а сервис будет вам напоминать об исполнениеии или о приближении
-        срока намеченного исполнения. Регистрируйтесь и пользуйтесь.</p>
-        <p class="lead">
-          <a href="{% url 'sign_up' %}" class="btn  btn-secondary">Зарегистрироваться</a>
-          <a href="{% url 'sign_in' %}" class="btn  btn-secondary">Войти</a>
-        </p>
-      </main>
+                <main role="main" class="inner cover">
+                    <h1 class="cover-heading">Рад видеть вас на моем сайте!</h1>
+                    <p class="lead">Этот сайт создан для хранения задач, решение которых вы ставите своей целью.
+                        Вы можете создавать новые задачи, а сервис будет вам напоминать об исполнениеии или о
+                        приближении
+                        срока намеченного исполнения. Регистрируйтесь и пользуйтесь.</p>
+                    <p class="lead">
+                        <a href="{% url 'sign_up' %}" class="btn  btn-secondary">Зарегистрироваться</a>
+                        <a href="{% url 'sign_in' %}" class="btn  btn-secondary">Войти</a>
+                    </p>
+                </main>
             </div>
         {% endif %}
     </div>

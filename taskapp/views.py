@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout
 from .models import Task
 from django.shortcuts import render, get_object_or_404
 import datetime
-
+from .checkdate import Checker
 
 # Create your views here.
 # Отображает форму добавления задания
@@ -30,6 +30,8 @@ def home(request):
     tasks = ''
     if request.user.is_authenticated:
         date = datetime.datetime
+        cheker = Checker(request.user)
+        cheker.checking()
         tasks = Task.objects.filter(owner=request.user).filter(date_finish__gt=date.today()).order_by('date_finish')
     return render(request, 'taskapp/home.html', {'tasks': tasks})
 

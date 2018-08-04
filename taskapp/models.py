@@ -10,6 +10,7 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     descrition = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    type_task = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
