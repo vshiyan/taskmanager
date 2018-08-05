@@ -11,6 +11,7 @@ class Task(models.Model):
     descrition = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     type_task = models.IntegerField(default=0)
+    state = models.CharField(default='activ', max_length=10)  # активное-activ,выполненое-compl,потраченое-fail
 
     def __str__(self):
         return self.title

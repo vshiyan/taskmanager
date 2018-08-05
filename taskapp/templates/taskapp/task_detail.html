@@ -1,18 +1,26 @@
 {% extends 'taskapp/base.html' %}
 {% block content %}
-    <br>
     <div class="container ">
+    <h3 class="text-success">{{ text_ok }}</h3>
         <ul class="list-group ">
             <li class="list-group-item list-group-item-dark"><h2 class="text-center ">{{ task.title }}</h2></li>
             <li class="list-group-item"><h5> Выполнить задачу до: {{ task.date_finish }}</h5></li>
             <li class="list-group-item">
                 <div class="">
                     <p>Описание задачи:</p>
-                    <textarea class="form-control" rows="11" disabled >{{ task.descrition }}</textarea>
+                    <textarea class="form-control" rows="11" disabled>{{ task.descrition }}</textarea>
                 </div>
             </li>
             <li class="list-group-item"><p>Дата регистрации задачи: {{ task.date_start }}</p></li>
 
         </ul>
+        {% if task.state == 'activ'%}
+            <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-lg btn-success btn-block">Отметить как выполненую</button>
+        </form>
+        {% endif %}
+
     </div>
 {% endblock %}

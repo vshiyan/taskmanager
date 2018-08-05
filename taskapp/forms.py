@@ -10,7 +10,7 @@ class FormTask(forms.ModelForm):
     date_finish = forms.DateTimeField(label=(u'Крайний срок исполнения задачи'),
                                       widget=forms.SelectDateWidget(attrs={'class': 'form-control form-control-sm'}))
     descrition = forms.CharField(label=(u'Описание задачи'), max_length=1000,
-                                  widget=forms.Textarea(attrs={'class': 'form-control form-control-sm'}))
+                                 widget=forms.Textarea(attrs={'class': 'form-control form-control-sm'}))
 
     class Meta:
         model = Task
@@ -20,10 +20,11 @@ class FormTask(forms.ModelForm):
 class FormUser(UserCreationForm):
     username = forms.CharField(label=(u'Введите имя пользователя'), max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label=(u'Введите адрес лектронной почты'),max_length=254,
+    email = forms.EmailField(label=(u'Введите адрес лектронной почты'), max_length=254,
                              widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password1 = forms.CharField(label=(u'Введите пароль'), widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label=(u'Повторите пароль'), widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label=(u'Повторите пароль'),
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -34,3 +35,7 @@ class UserLoginForm(forms.Form):
     username = forms.CharField(label=(u'Имя пользователя'), max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label=(u'Пароль'), widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+
+class FormCompled(forms.Form):
+    state = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'type': 'hidden', 'value': 'compl'}))

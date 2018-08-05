@@ -1,9 +1,8 @@
 {% extends 'taskapp/base.html' %}
 {% block content %}
-    <div class="container mt-5 text-center">
+    <div class="  text-center ">
         {% if  user.is_authenticated %}
-            <br>
-            <h2 class="mt-2">Поставленные задачи для пользователя {{ user.get_username }}</h2>
+            <h2 class="">Поставленные задачи для пользователя {{ user.get_username }}</h2>
             <input type="button" class="btn btn-lg btn-success btn-block" value="Добавить задание"
                    onClick='location.href="{% url 'add' %}"'>
             {% if  not tasks.count %}

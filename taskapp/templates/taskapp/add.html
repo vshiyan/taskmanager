@@ -2,12 +2,15 @@
 {% load static %}
 {% block content %}
     <br>
-<h2>Добавить задачу для пользователя {{ user.get_username }}</h2>
-<p style="color: chartreuse">{{ text_ok }}</p>
-<form method="post" class="form-control-sm">
-    {% csrf_token %}
-    {{ form_task.as_p }}
-    <button type="submit" class="btn btn-lg btn-success btn-block ">Сохранить</button>
-     <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную" onClick='location.href="{% url 'home' %}"'>
-</form>
+    <h2>Добавить задачу для пользователя {{ user.get_username }}</h2>
+    <p style="color: chartreuse">{{ text_ok }}</p>
+
+
+    <form method="post" class="form-control-sm">
+        {% csrf_token %}
+        {{ form_task.as_p }}
+        <button type="submit" class="btn btn-lg btn-success btn-block ">Сохранить</button>
+        <input type="button" class="btn btn-lg btn-dark btn-block" value="На главную"
+               onClick='location.href="{% url 'home' %}"'>
+    </form>
 {% endblock %}
